@@ -1,0 +1,50 @@
+# create cm where each file in ./cm/from-dir becomes a key in the cm and file content becomes data
+kc cm cm-from-dir --from-file=./cm/from-dir
+
+# show content of cm by 'describing'
+kd cm cm-from-dir
+
+---
+
+# create cm from a single file where base file name becomes key and content data
+kc cm cm-from-file --from-file=./from-dir/file1
+
+# show content of cm by 'describing'
+kd cm cm-from-file
+
+################################
+# demo cm as file usage in po
+################################
+
+# create yaml for nginx po
+kr cm-file-po --image=nginx $do>p.yml
+
+# edit in vi so a cm-vol volume mounts the cm into /cm-demo
+# save as p1.yml (can be done via wq: p1.yml)
+
+# create po using p1.yml
+kc -f p1.yml
+
+# check cm was created with expected content
+kx -it cm-file-po -- cat /cm-demo/file1
+
+# tip: you can check differences between p.yml and p1.yml on the commandline:
+diff p.yml p1.yml
+#or
+diff -u p.yml p1.yml
+
+################################
+# demo cm --from-file with key
+################################
+
+kc cm cm-from-file-key --from-file=key1=./from-dir/file1
+kd cm cm-from-file-key
+
+#compare with cm-from-file
+kd cm cm-from-file
+
+
+
+
+
+

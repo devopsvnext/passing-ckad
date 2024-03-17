@@ -1,0 +1,29 @@
+The exam is hands-on in an Ubuntu terminal. This is where you need to excel. Practice using the terminal as much as possible. 
+If in Windows world use WSL2 as much as possible. I sat up Ubuntu as my default Windows terminal in Win11
+
+Get used to using short names for kubernetes resources. Easier and faster to type. 
+Can be seen by running:
+kubectl api-resources
+
+Learn how to navigate kubernetes.io/docs and find whatever you need quickly (I often search for 'kind: <some-object>' and then put it on the paste board for re-use when on the relevant page
+
+Know CTRL+a brings you to the start of a line in terminal
+Know CTRL+e brings you to the end of a line in terminal
+
+Know CTRL+z puts a process in the background in terminal (bring it back using 'fg')
+
+Become familiar with vi or nano
+Become familiar with tmux
+Become familiar with aliases on Ubunutu
+Become familiar with grep (-i,-R options especially)
+Become familiar with general short form arguments to kubectl (-h vs --help, -A vs --all)
+
+Become familiar with less and tree
+
+Consider making your own flashcards to memorize various things (I used cram.com - free)
+
+Use platforms like kodekloud.com
+
+Research when you bump into behavior that surprices you. For instance I couldn't understand why 'kg secret -oyaml' gave a different result than 'kd secret'. I asked ChatGPT about the differences and got a great explanation I could verify subsequently. Turns out, 'k describe secret' implicitly base64 decodes, which 'k get secret' does not. Good to know!
+
+

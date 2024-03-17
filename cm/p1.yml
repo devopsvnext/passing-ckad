@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: cm-file-po
+  name: cm-file-po
+spec:
+  containers:
+  - image: nginx
+    name: cm-file-po
+    volumeMounts:
+      - name: cm-vol
+        mountPath: /cm-demo  
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  volumes:
+    - name: cm-vol
+      configMap:
+        name: cm-from-file
+status: {}
