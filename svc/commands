@@ -1,0 +1,18 @@
+
+# test a service using the nginx image containing curl
+kr tmp --image=nginx --restart=Never --rm -it -- curl <svc>.<ns>
+
+# for instance the nginx service in the default namespace
+kr tmp --image=nginx --restart=Never --rm -it -- curl nginx.default
+
+# sometimes port and full DNS is required but built-in CoreDNS typically removes the need for using the fully qualified DNS name (FQDN)
+
+# a fully qualified example could be
+kr tmp --image=nginx --restart=Never -it --rm -- curl http://nginx.default.svc.cluster.local:80
+
+# the busybox image can also be used for service testing. But the syntax is a little less intuitive and longer to type, so I use curl and the nginx image. Busybox is much smaller, but nginx is still less than 200 MB so no major issue nowadays. Anyway for reference here is the busybox wget way
+
+kr tmp --image=busybox --rm -it --restart=Never -- wget -O- <svc>.<ns>
+#for instance:
+kr tmp --image=busybox --rm -it --restart=Never -- wget -O- nginx.default
+
