@@ -1,5 +1,28 @@
-# create secret and get it using -ogo-template
-# create secret and get it using -ojsonpath
-# list pods name and image using costum-columns
+# create pod and secret for demo purposes
+kc secret generic output-secret --from-literal=secret1=secret-value1
+kr nginx --image=nginx:alpine
 
+# when choosing output type it is possible to save a space e.g. '-o yaml' vs '-oyaml'
+# since CKAD is all about working with the CLI and yaml fast I always use the short form 
+
+# short description for quick overview
+kg secret output-secret
+
+# get secret as yaml
+kg secret output-secret -oyaml
+
+# get secret data entry via jsonpath output option. Output is base64 encoded
+kg secret output-secret -ojsonpath='{.data.secret1}'
+
+# Get secret using go-template output option
+kg secret output-secret -ogo-template='{{.data.secret1}}'
+
+# get secret data entry via go-template and base64 decode
+kg secret output-secret -ogo-template='{{.data.secret1 | base64decode}}'
+
+# use custom-columns option for customized tables
+kg secret -ocustom-columns=SECRET-NAME:.metadata.name,TYPE:.type
+
+# use custom-columns option for customized table showing pod and images
+kg po -ocustom-columns=POD:.metadata.name,IMAGE:.spec.containers[*].image
 
