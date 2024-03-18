@@ -26,3 +26,19 @@ kg secret -ocustom-columns=SECRET-NAME:.metadata.name,TYPE:.type
 # use custom-columns option for customized table showing pod and images
 kg po -ocustom-columns=POD:.metadata.name,IMAGE:.spec.containers[*].image
 
+# also consider the wide output option
+kg <object-type> -owide
+
+# wide option with labels
+kg <object-type> -owide --show-labels
+
+# consider det watch option:
+kg <object-type> -w
+
+# consider the short-form of --all-namespaces (not supported by all object types)
+kg <object-type> -A
+
+# consider the 'all' option to get some of the most common objects (not all!)
+kg all
+
+
