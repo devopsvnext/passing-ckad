@@ -16,3 +16,12 @@ kr tmp --image=busybox --rm -it --restart=Never -- wget -O- <svc>.<ns>
 #for instance:
 kr tmp --image=busybox --rm -it --restart=Never -- wget -O- nginx.default
 
+#it is also an option to setup an alias to make it super easy to test services:
+alias kt=kr tmp --image=nginx --rm -it --restart=Never -- curl
+
+#then to test svc
+#kt <svc>.<ns>[.svc.cluster.local][:port]
+
+#for instance
+kt nginx2.default
+
