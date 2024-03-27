@@ -1,16 +1,50 @@
-The exam is hands-on in an Ubuntu terminal. This is where you need to excel. Practice using the terminal as much as possible. 
-If in Windows world use WSL2 as much as possible. I sat up Ubuntu as my default Windows terminal in Win11
+# PASSING CKAD
 
-Get used to using short names for kubernetes resources. Easier and faster to type. 
-Can be seen by running:
+This repository contains information about how I prepared and cleared the CKAD exam end of March 2024. Hopefully it also gives some insight into what it takes to pass the exam.
+
+## About the exam
+
+The exam is hands-on in an Ubuntu terminal. The exam environment is very locked down. You have access to a FireFox browser from within the exam environment and that's it.
+
+From within FireFox you are allowed to use these two soucres:
+https://kubernetes.io/docs
+https://helm.sh
+
+### Use Ubuntu Terminal as much as possible
+
+It cannot be stressed enough. The exam is in Ubuntu terminal so that is where you need to excel. Practice using the terminal as much as possible.
+If coming from Windows, consider using WSL2 as much as possible. Consider setting Ubuntu terminal as your default terminal in Windows terminal 
+
+### Use short names for Kubernetes resources
+
+Get used to using short names for Kubernetes resources. They are easier and faster to type. During the exam and in real life. 
+If you use the amazing k9s CLI (https://k9scli.io/) you can also use the short names in that tool (k9s is not allowed during the exam).
+
+The short names for various Kubernetes resources can be seen by running: 
 kubectl api-resources
 
-Learn how to navigate kubernetes.io/docs and find whatever you need quickly (I often search for 'kind: <some-object>' and then put it on the paste board for re-use when on the relevant page)
+### Learn how to navigate kubernetes.io/docs quickly
 
-Don't write yaml by hand! Too slow and too error-prone!
-Either copy from kubernetes.io/docs or generate via commands like:
+Learn how to navigate kubernetes.io/docs and find whatever you need quickly. There is a search input field in the upper left part of the landing page.
+If I searched for specific yaml snippets I'd often search for 'kind: <object-type>' and then put it on the paste board for re-use when I got to the relevant page, so
+I didn't have to scroll through the page
+
+### Use aliases
+
+Use aliases for the kubectl commands you use the most. This will save time and keystrokes. I found simple aliases worked best for me. 
+
+Strictly speaking not an alias. I also exported an environment variable 'do' so I could type $do instead of '--dry-run=client -o yaml':
+export do="--dry-run=client -oyaml"
+
+You can see defined aliases using the 'alias' command.
+
+### Don't write yaml by hand
+
+Don't write yaml by hand! It is too slow and too error-prone!
+
+Either copy from kubernetes.io/docs or generate via imperative commands like:
 kubectl run <pod-name> --image=<image-name> --oyaml --dry-run=client -n <namespace> (optionally configure env vars via --env=<var1>=<val1 and labels via -l=label1=value1)>p.yml
-with alias setup it would be
+with the aliases I used, the above command would be:
 kr <pod-name> --image=<image-name> $do -n <namespace> >p.yml (plus optionally parameters - significantly shorter and faster than writing the full commands)
 The other command I used again and again was
 kubectl create <object-type> <object-name> -n <namespace> >x.yml (plus optionally parameters passed in). This way you can quickly create yaml for configmaps, secrets, deployments, cronjobs, jobs, ingresses
@@ -21,25 +55,59 @@ Once you have the yaml, it can quickly be applied using kubectl create or kubect
 kc -f x.yml
 ka -f x.yml
 
-Become familiar with "kubectl explain <object-type>", "kubectl explain <object-type>.<field>", "kubectl explain <object-type> --recursive". The latter one can be super useful when piped to grep -i -C <context-lines>. In some cases it is faster checking yaml structure or supported values for specific fields than searching on kubernetes.io/docs. 
+### Use kubectl explain
+
+Become familiar with "kubectl explain <object-type>", "kubectl explain <object-type>.<field>", "kubectl explain <object-type> --recursive". 
+The latter one can be super useful when piped to grep -i -C <context-lines>. 
+In some cases it is faster checking yaml structure or supported values for specific fields than searching on kubernetes.io/docs. 
+
+### Know how to navigate current line in the terminal
 
 Know CTRL+a brings you to the start of a line in terminal
 Know CTRL+e brings you to the end of a line in terminal
+CTRL+ left/right arrow scrolls per word versus per character
 
-Know CTRL+z puts a process in the background in terminal (bring it back using 'fg')
+It can save a bit of time and feels a bit more agile than using the left/right arrow keys
 
-Become familiar with vi or nano
-Become familiar with tmux
-Become familiar with aliases on Ubunutu
+### Know how to put a running process in the background
+
+Know CTRL+z puts a process in the background in terminal and that you can bring it back via 'fg' (I assume it stands for foreground)).
+This is useful when running a command that takes more than a few seconds to process. 
+By putting the process in the background you can start typing on the next command and then retrieve the background command using 'fg' a bit later.
+Again, it saves a bit of time.
+
+### Become decent at either vi or nano
+
+Become decent at working with with vi or nano. You only have these two editors in the exam environment. It is also useful in real life. I went all-in and learnt to use vi decently.
+If you consider using vi and are new to that editor I'll recommend using vimtutor. I think most Linux systems have vimtutor pre-installed. Just type vimtutor in the terminal and spend an hour learning the basics.
+
+### Consider using tmux
+
+Tmux is a terminal multiplexer. It enables you to split the terminal in multiple panes and windows. It is pre-installed and allowed at the exam. I like using it in real life, but did not use it during the exam. 
+It complicates output, coloring and copy-paste behavor in the exam scenario, so I chose not to use it during training and exam.
+
+### Know how to use grep
+
 Become familiar with grep (-i,-R options especially)
-Become familiar with general short form arguments to kubectl (-h vs --help, -A vs --all)
 
-Become familiar with less and tree
+### Become familiar with common short form arguments to kubectl
 
-Consider making your own flashcards to memorize various things. I made the ones below to ensure I trained and memorized things I bumped into I didn't know and found relevant to remember (I used cram.com - free):
+Become familiar with general short form arguments to kubectl. Use -h instead of --help. Use -A installd of --all.
+
+### Become familiar with less and tree
+
+Not a must. But I find less and tree to be useful in the terminal. Less is more flexible than cat. Tree is useful to quickly visualize a folder structure in the terminal.
+
+### Consider using flashcards
+
+Consider using flashcards to memorize various things. I made the ones below to ensure I trained and memorized things I bumped into I didn't know and found relevant to remember.
+I used the free option from cram.com and made the flashcards public:
+
 https://www.cram.com/flashcards/ckad-13709656
 https://www.cram.com/flashcards/helm-13716537
 https://www.cram.com/flashcards/kubectl-13168712
+
+
 
 The majority of my preparation I spent watching videos and doing labs via:
 https://kodekloud.com/courses/certified-kubernetes-application-developer-ckad/
