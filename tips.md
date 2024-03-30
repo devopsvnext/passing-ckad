@@ -161,4 +161,12 @@ Regardless of your level of relevant knowledge when taking on the CKAD It's a go
 
 5/ On exam day. Allow plenty of time to setup, login, get your ID approved and get your exam room approved.
 
+### Be familiar with kubectl -h
+
+See [kubectl built-in help](kubectl-usage)
+
+### Be familiar with kubectl sub-commands
+
+See [kubectl sub-commands](kubectl-with-subcommands)
+
 
