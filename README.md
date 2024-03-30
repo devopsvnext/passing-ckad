@@ -117,15 +117,15 @@ For instance I couldn't understand why 'kg secret -oyaml' gave a different resul
 
 ### Do a lot of lab exercises
 
-The majority of my preparation I spent watching videos and doing labs via:
-https://kodekloud.com/courses/certified-kubernetes-application-developer-ckad/
+The majority of my preparation I spent watching videos and doing labs via:<br><br>
+https://kodekloud.com/courses/certified-kubernetes-application-developer-ckad/<br>
 I used a spreadsheet with date and subject rehearsed as well as how long it took to do the lab.
 I made notes in the spreadsheet when something was challenging and kept revisiting until the topic was easy
 I prioritized labs over videos. Not sure I saw all videos.
 
 ### Do mock exams
 
-When I had a decent all-round proficiency I moved on to do mock exams from this site:
+When I had a decent all-round proficiency I moved on to do mock exams from this site:<br><br>
 https://kodekloud.com/lessons/certified-kubernetes-application-developer-mock-exam-series/ <br><br>
 These are  mock exams with 20 random questions. One mock exam is meant to take 2 hours. I wanted to rehearse smaller chunks often as that fitted my schedule best.<br><br>
 So I did 5 questions some days, 10 some days and some days an entire set. Many days I skipped due to work or private stuff..:-) <br><br>
