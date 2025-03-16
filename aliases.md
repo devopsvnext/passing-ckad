@@ -16,7 +16,10 @@ alias kt="kr tmp --image=nginx --rm -it --restart=Never -- curl"
 Remember you have to memorize and define the aliases you want to use at the exam, so it has to be balanced. <br>Most probably you don't want too many and too advanced aliases since that will take time to type in during the exam. <br>Only the ones that are used a lot and will save time are good candidates.<br>
 
 Strictly speaking not an alias. I also exported an environment variable 'do' so I could type $do instead of '--dry-run=client -o yaml':<br><br>
-```export do="--dry-run=client -oyaml"```<br>
+```
+export do="--dry-run=client -oyaml"
+```
+<br>
 
 So for instance to create yaml for an nginx deployment called webapp with 2 replicas using the above aliases would be
 
